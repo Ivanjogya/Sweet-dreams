@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lemme Hug 🤗</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: #fff;
+        margin-bottom: 40px;
+        animation: floatText 2s ease-in-out infinite;
+      }
+
+      @keyframes floatText {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .hug-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
+
+      .character {
+        width: 100%;
+        height: 100%;
+        background: url("https://i.pinimg.com/1200x/4d/0d/e5/4d0de51f176469618bebff1dcde0a518.jpg")
+          no-repeat center;
+        background-size: contain;
+        transition: transform 0.4s ease;
+      }
+
+      .hugged .character {
+        transform: scale(1.1) rotate(-5deg);
+      }
+
+      button {
+        margin-top: 30px;
+        padding: 12px 24px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 25px;
+        background-color: #ff6f91;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #ff4e7a;
+      }
+
+      .heart {
+        font-size: 2rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+        color: #fff;
+        animation: popHeart 0.6s forwards;
+      }
+
+      @keyframes popHeart {
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.4);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sweet dreams, Princess 🤗</h1>
+
+    <div class="hug-container" id="hugContainer">
+      <div class="character"></div>
+    </div>
+
+    <button onclick="hug()">Here</button>
+
+    <script>
+      function hug() {
+        const container = document.getElementById("hugContainer");
+        container.classList.add("hugged");
+
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        container.appendChild(heart);
+
+        setTimeout(() => {
+          container.classList.remove("hugged");
+          heart.remove();
+        }, 1500);
+      }
+    </script>
+  </body>
+</html>
